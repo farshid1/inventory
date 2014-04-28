@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //user controller
 require('../../models/user.js');
 
@@ -26,6 +27,10 @@ var mongoose = require('mongoose'),
 
 //}
 
+=======
+mongoose = require('mongoose'),
+User = require('../models/user.js');
+>>>>>>> FETCH_HEAD
 //LL - called on 'user/new' POST
 exports.add = function(req, res) {
   doesUserExist(req, res, createUser);
@@ -34,10 +39,19 @@ exports.add = function(req, res) {
 
 // Attempts to authenticate user
 exports.login = function(req, res) {
+<<<<<<< HEAD
   var success = {
     success: "success"
   };
   res.jsonp(success);
+=======
+  User.findOne({ email: req.body.username , password:req.body.password},"firstName lastName", function (err, userResult) {
+    if (err) return console.error(err);
+        console.log(userResult);
+        console.log("sdfadsfadsf");
+      res.jsonp(userResult);
+  });
+>>>>>>> FETCH_HEAD
 };
 
 exports.update = function(res,req){
