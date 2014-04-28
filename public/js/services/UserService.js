@@ -8,7 +8,7 @@ angular.module('UserService', []).factory('UserService',['$http','$q', function(
 	return { 
 		postData: function(formData) {
 			return $http({
-				url: '/api/login',
+				url: '/api/user/login',
 				data: JSON.stringify(formData),
 				method: 'POST',
 				header: {'Content-Type':'application/json'}

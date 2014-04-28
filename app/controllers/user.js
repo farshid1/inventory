@@ -31,7 +31,10 @@ exports.add = function(req, res) {
 
 // Attempts to authenticate user
 exports.login = function(req, res) {
- 
+  var success = {
+    success: "success"
+  };
+  res.jsonp(success);
 };
 
 exports.update = function(res,req){

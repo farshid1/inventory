@@ -3,7 +3,9 @@ angular.module('UserCtrl', ['UserService']).controller('UserController', ['$scop
     function ($scope, UserService) {
 
     	$scope.user = {};
+
     	$scope.submit = function(formData) {
+    		console.log($scope.user);
     		$scope.master = angular.copy(formData);
 
     		UserService.postData($scope.master)
