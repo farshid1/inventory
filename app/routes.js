@@ -9,7 +9,7 @@ module.exports = function(app) {
 	// authentication routes
 
 	// User routes :
-	/*app.post('/api/user/login', user.login);
+	app.post('/api/user/login', user.login);
 	app.post('/api/user/add', user.add);
 	app.get('/api/user/logout', user.isAuthenticated, user.logout);
 	app.post('/api/user/update', user.isAuthenticated, user.update);
@@ -24,7 +24,7 @@ module.exports = function(app) {
 	app.post('/api/sales/editInvoice', user.isAuthenticated, sales.editInvoice);
 	app.post('/api/sales/searchProduct', user.isAuthenticated, sales.seachProduct);
 	app.post('/api/sales/InvoiceFinlaized',user.isAuthenticated, sales.InvoiceFinlaized);
-	*/
+	
 	// frontend routes =========================================================
 	// route to handle all angular requests
 	app.get('*', function(req, res) {

@@ -1,28 +1,5 @@
-//user controller
-
-
-
-//function doesUserExist(req, res, callback){
- 
- 	// find element in users collection 
-  
-     // if user already exist {
-        
-    
-        //res.redirect("/api/user/add/error");
-      //}
-
-      //else{
-
-        //username does not exist, create it
-        //callback(req);
-        //res.redirect("/user/login/success");
-   
-//}
-//function createUser(req){
-
-//}
-
+mongoose = require('mongoose'),
+user = require('../models/user.js');
 //LL - called on 'user/new' POST
 exports.add = function(req, res) {
   doesUserExist(req, res, createUser);
@@ -31,10 +8,17 @@ exports.add = function(req, res) {
 
 // Attempts to authenticate user
 exports.login = function(req, res) {
-  var success = {
-    success: "success"
-  };
-  res.jsonp(success);
+  user.findOne({ email: req.body.username , password:req.body.password},"firstName lastName", function (err, userResult) {
+    if (err) return console.error(err);
+    //if(!Object.keys(userResult).length){
+        console.log(userResult);
+        console.log("sdfadsfadsf");
+      res.jsonp(userResult);
+    // }
+    // else {
+    //   res.jsonp({status: "failerd"});
+    // }
+  });
 };
 
 exports.update = function(res,req){
