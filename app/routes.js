@@ -17,7 +17,7 @@ module.exports = function(app) {
 	//Inventory routes :
 	app.post('/api/inventory/add',user.isAuthenticated, inventory.add);
 	app.post('/api/inventory/edit', user.isAuthenticated, inventory.edit);
-	app.post('/api/inventory/search', user.isAuthenticated, inventory.seach);
+	app.post('/api/inventory/search', user.isAuthenticated, inventory.search);
 
 	//Sales routes : 
 	app.post('/api/sales/addInvoice', user.isAuthenticated, sales.addInvoice);
