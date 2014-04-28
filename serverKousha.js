@@ -45,26 +45,26 @@ db.once('open', function callback () {
 app.listen(port);
 
 //Read the db to make sure the admin has been inserted to the db.	
-user.findOne({ role: 1 },"email firstName lastName", function (err, userResult) {
-  if (err) return console.error(err);
-  if(!Object.keys(userResult).length){
-  	console.log("doens't exist");
-	var admin = new user({ 		
-			role: 1,
-		    firstName: "admin",
-		    lastName: "admin",
-		    phoneNumber: 0,
-		    email: "admin@admin.com",
-		    password: "admin" });
-		admin.save(function (err, admin) {
-		  if (err) return console.error(err);
-		  admin;
-		});
-  }
-  else{
-  	console.log(userResult)
-  }
-})
+// user.findOne({ role: 1 },"email firstName lastName", function (err, userResult) {
+//   if (err) return console.error(err);
+//   if(!Object.keys(userResult).length){
+//   	console.log("doens't exist");
+// 	var admin = new user({ 		
+// 			role: 1,
+// 		    firstName: "admin",
+// 		    lastName: "admin",
+// 		    phoneNumber: 0,
+// 		    email: "admin@admin.com",
+// 		    password: "admin" });
+// 		admin.save(function (err, admin) {
+// 		  if (err) return console.error(err);
+// 		  admin;
+// 		});
+//   }
+//   else{
+//   	console.log(userResult)
+//   }
+// });
 console.log('Magic happens on port ' + port); 			// shoutout to the user
 exports = module.exports = app; 						// expose app
 
