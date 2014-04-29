@@ -1,19 +1,17 @@
-angular.module('UserCtrl', ['UserService']).controller('UserController', ['$scope','$rootScope', 'UserService',
+angular.module('DashboardCtrl', ['UserService']).controller('DashboardController', ['$scope',  'UserService',
 
-    function ($scope, $rootScope, UserService) {
+    function ($scope, UserService) {
 
     	$scope.user = {};
-        $rootScope.isLoggedin = false;
-        
+
     	$scope.submit = function(formData) {
+    		console.log($scope.user);
     		$scope.master = angular.copy(formData);
 
     		UserService.postData($scope.master)
     		.then (
     			function(r) {
-				console.log(r.data.role);
-                $rootScope.role = r.data.role;
-
+				console.log(r.data);
                 
 				//$scope.restaurants = angular.copy(r.data);
 				//alert('data loaded');
