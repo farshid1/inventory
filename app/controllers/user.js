@@ -89,7 +89,7 @@ exports.update = function(res,req){
       pass =req.body.pass,
 	 first = req.body.firstName,
 	 last = req.body.lastName,
-	 phone = req.body.phoneNumber,
+	 phone = req.body.phoneNumber;
 
   if (!uid)
     return res.redirect("/login");

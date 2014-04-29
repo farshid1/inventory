@@ -1,6 +1,6 @@
 var mongoose = require('mongoose'),
 Schema = mongoose.Schema;
-var inventory = new Schema({
+var inventorySchema = new Schema({
 	upc: Number,
     name: String,
     picture: String,
@@ -8,13 +8,13 @@ var inventory = new Schema({
     onHoldQu: Number,
     soldQu: Number,
     price: Number,
-    addLogs: [{
+    logs: [{
     	inventoryPersonId: Number,
     	date: Date,
     	quantity: Number
     }]
 });
 
-var inventory = mongoose.model('inventory', userSchema);
+var inventory = mongoose.model('inventory', inventorySchema);
 
 module.exports = inventory;
