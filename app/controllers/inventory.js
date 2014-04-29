@@ -6,6 +6,9 @@ var uid = req.session.uid;
 
   if (uid === undefined)
     return res.redirect("/login");
+  else{
+  	
+	}
 };
 
 exports.edit = function(res,req){
