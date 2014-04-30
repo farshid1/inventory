@@ -56,7 +56,7 @@ exports.login = function(req, res) {
 		console.log(user);
 
   if (req.session.uid) {
-    res.redirect('/dasboard');
+    res.jsonp('/dasboard');
   }
 
 
@@ -72,12 +72,13 @@ exports.login = function(req, res) {
         req.session.uid = doc._id;
         req.session.urole = doc.role;
         console.log(req.session.urole);
-
+        console.log("USER: '" + user + "'" + " valid credentials");
         res.jsonp(doc);
       }
       else {
         console.log("USER: '" + user + "'" + " invalid credentials");
-       
+        res.jsonp("couldn't find");
+        //res.redirect('/login');
       }
 });
 
