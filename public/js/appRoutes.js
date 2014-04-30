@@ -18,9 +18,9 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			controller: 'UserController'	
 		})
 
-		.when('/register', {
-			templateUrl: 'views/register.html',
-			controller: 'UserController'	
+		.when('/dashboard', {
+			templateUrl: 'views/dashboard.html',
+			controller: 'MainController'	
 		});
 
 	$locationProvider.html5Mode(true);
