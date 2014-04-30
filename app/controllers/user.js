@@ -7,7 +7,7 @@ var mongoose = require('mongoose'),
 //-Check if the desired username already exists
 function doesUserExist(req, res, callback){
   var user = req.body.username,
-	  pass = req.body.password;
+    pass = req.body.password;
 
     User.find({email: user}).count(function(err, count){
       if (count > 0){
@@ -27,33 +27,33 @@ function doesUserExist(req, res, callback){
 //Create the user
 function createUser(req){
  var user = req.body.username,
-	 pass = req.body.password,
-	 first = req.body.firstName,
-	 last = req.body.lastName,
-	 phone = req.body.phoneNumber,
-	 urole = req.body.role;
+   pass = req.body.password,
+   first = req.body.firstName,
+   last = req.body.lastName,
+   phone = req.body.phoneNumber,
+   urole = req.body.role;
 
     User.insert({email: user, password : pass, firstName :first, lastName: last, phoneNumber :phone,
-    	role: urole}, function(error, doc){});
+      role: urole}, function(error, doc){});
   
   return;
 }
 //called on 'user/add' POST
 exports.add = function(req, res) {
-	if(req.session.urole === 1){ 
+  if(req.session.urole === 1){ 
   doesUserExist(req, res, createUser);
 }
 else {
-	res.redirect('/dasboard');
+  res.redirect('/dasboard');
 }
 };
 
 
 //- Attempt to log user in and create session cookie
 exports.login = function(req, res) {
-	var user = req.body.username,
-		pass = req.body.password;
-		console.log(user);
+  var user = req.body.username,
+    pass = req.body.password;
+    console.log(user);
 
   if (req.session.uid) {
     res.jsonp('/dasboard');
@@ -61,9 +61,9 @@ exports.login = function(req, res) {
 
 
   User.findOne({email: user, password: pass},{_id:1, role:1,firstName:1,lastName:1}, 
-  	function(err, doc) {
+    function(err, doc) {
       if (err) {
-      	console.error(err);
+        console.error(err);
       }
       if (doc) {
         console.log("USER: '" + user + "' successfully authenticated");
@@ -85,12 +85,12 @@ exports.login = function(req, res) {
 };
 
 exports.update = function(res,req){
-	var uid = req.session.uid,
+  var uid = req.session.uid,
       user=req.body.user,
       pass =req.body.pass,
-	 first = req.body.firstName,
-	 last = req.body.lastName,
-	 phone = req.body.phoneNumber;
+   first = req.body.firstName,
+   last = req.body.lastName,
+   phone = req.body.phoneNumber;
 
   if (!uid)
     return res.redirect("/login");
@@ -120,8 +120,8 @@ exports.update = function(res,req){
 
 
 exports.logout = function(res,req){
-	delete req.session.uid;
-  	res.redirect("/login");
+  delete req.session.uid;
+    res.redirect("/login");
 };
 
 // - check if user is authenticated, proceed if true. Use this callback for proceeding to authenticated pages

@@ -15,17 +15,20 @@ module.exports = function(app) {
 	app.post('/api/user/update', user.isAuthenticated, user.update);
 
 	//Inventory routes :
-	app.post('/api/inventory/addItem',user.isAuthenticated, inventory.addItem);
-	app.post('/api/inventory/editItem', user.isAuthenticated, inventory.editItem);
-	app.post('/api/inventory/addQuantity', user.isAuthenticated, inventory.addQuantity);
-	app.post('/api/inventory/searchItem', user.isAuthenticated, inventory.searchItem);
-	
+	app.post('/api/inventory/add',user.isAuthenticated, inventory.add);
+	app.post('/api/inventory/edit', user.isAuthenticated, inventory.edit);
+	app.post('/api/inventory/search', user.isAuthenticated, inventory.search);
 
 	//Sales routes : 
-	app.post('/api/sales/addInvoice', user.isAuthenticated, sales.addInvoice);
-	app.post('/api/sales/editInvoice', user.isAuthenticated, sales.editInvoice);
+	app.post('/api/sales/addToCart', user.isAuthenticated, sales.addToCart);
+	app.post('/api/sales/searchCustomer', user.isAuthenticated, sales.searchCustomer);
+	app.post('/api/sales/addNewCustomer', user.isAuthenticated, sales.addNewCustomer);
+	app.post('/api/sales/editCustomer', user.isAuthenticated, sales.editCustomer);
+
+
+	
 	app.post('/api/sales/searchProduct', user.isAuthenticated, sales.seachProduct);
-	app.post('/api/sales/InvoiceFinlaized',user.isAuthenticated, sales.InvoiceFinlaized);
+	app.post('/api/sales/FinalizeInvoice',user.isAuthenticated, sales.FinalizeInvoice);
 	
 	// frontend routes =========================================================
 	// route to handle all angular requests
