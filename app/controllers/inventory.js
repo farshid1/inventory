@@ -18,8 +18,8 @@ upc: Number,
 
 */
 
-exports.add = function(res,req){
-var uid = req.session.uid;
+exports.addQuantity = function(res,req){
+	var uid = req.session.uid;
 
  	if (uid === undefined)
     	return res.redirect("/login");
@@ -30,7 +30,7 @@ var uid = req.session.uid;
 	Inv.find({upc: upcU}).count(function(err, count){
      	 if (count > 0){
      	 	  
-     	 	  var document = { $inc: {onHandQu:  quantityU}, 
+     	 	  var document = {$inc: {onHandQu:  quantityU}, 
      	 	  $push: {logs: {inventoryPersonId: uid, date: dateU, quantity: quantityU}}};
 		      Inv.update(
 		        { upc: upcU }, document, {safe: true}, function(err, doc) {
@@ -58,7 +58,7 @@ var uid = req.session.uid;
 	});
 };
 
-exports.edit = function(res,req){
+exports.editItem = function(res,req){
 	var uid = req.session.uid;
 
   	if (uid === undefined)
@@ -84,7 +84,32 @@ exports.edit = function(res,req){
 	});
 };
 
-exports.search = function(res,req){
+exports.addItem = function(res,req){
+	var uid = req.session.uid;
+
+  	if (uid === undefined)
+    	return res.redirect("/login");
+
+	var upcU = req.body.upcFE;
+	var quantityU = req.body.quantityFE;
+	var nameU = req.body.nameFE;
+	var pictureU = req.body.pictureFE; 
+	var priceU = req.body.priceFE;
+	var dateU = new Date();
+	var onHoldQuU = req.body.onHoldQuFE;
+	var soldQuU = req.body.soldQu;
+
+	var document = {upc: upcU,name: nameU,picture: pictureU,
+		onHandQu: quantityU,onHoldQu: quantityU, soldQu:soldQuU,price: priceU,
+		$push: {logs: {inventoryPersonId: uid, date: dateU, quantity: quantityU}}};
+
+	Inv.insert(document, function(err, doc) {
+		if (err) throw err;
+		res.redirect('/dashboard');
+	});
+};
+
+exports.searchItem = function(res,req){
 	var uid = req.session.uid;
 
   	if (uid === undefined)

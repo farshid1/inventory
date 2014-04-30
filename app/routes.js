@@ -15,9 +15,11 @@ module.exports = function(app) {
 	app.post('/api/user/update', user.isAuthenticated, user.update);
 
 	//Inventory routes :
-	app.post('/api/inventory/add',user.isAuthenticated, inventory.add);
-	app.post('/api/inventory/edit', user.isAuthenticated, inventory.edit);
-	app.post('/api/inventory/search', user.isAuthenticated, inventory.search);
+	app.post('/api/inventory/addItem',user.isAuthenticated, inventory.addItem);
+	app.post('/api/inventory/editItem', user.isAuthenticated, inventory.editItem);
+	app.post('/api/inventory/addQuantity', user.isAuthenticated, inventory.addQuantity);
+	app.post('/api/inventory/searchItem', user.isAuthenticated, inventory.searchItem);
+	
 
 	//Sales routes : 
 	app.post('/api/sales/addInvoice', user.isAuthenticated, sales.addInvoice);
