@@ -1,7 +1,7 @@
 //inventory controller
 
 
-exports.add = function(res,req){
+exports.add = function(req,res){
 var uid = req.session.uid;
 
   if (uid === undefined)
@@ -11,7 +11,7 @@ var uid = req.session.uid;
 	}
 };
 
-exports.edit = function(res,req){
+exports.edit = function(req,res){
 	var uid = req.session.uid;
 
   if (uid === undefined)
@@ -19,7 +19,7 @@ exports.edit = function(res,req){
 
 };
 
-exports.search = function(res,req){
+exports.search = function(req,res){
 	var uid = req.session.uid;
 
   if (uid === undefined)

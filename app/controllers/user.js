@@ -84,7 +84,7 @@ exports.login = function(req, res) {
 
 };
 
-exports.update = function(res,req){
+exports.update = function(req,res){
   var uid = req.session.uid,
       user=req.body.user,
       pass =req.body.pass,
@@ -119,7 +119,7 @@ exports.update = function(res,req){
 
 
 
-exports.logout = function(res,req){
+exports.logout = function(req,res){
   delete req.session.uid;
     res.redirect("/login");
 };
