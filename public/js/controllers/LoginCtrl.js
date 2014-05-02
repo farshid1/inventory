@@ -1,13 +1,30 @@
-angular.module('LoginCtrl', ['UserService'])..controller('LoginController', function ($scope, $rootScope, AUTH_EVENTS, AuthService) {
-  $scope.credentials = {
-    username: '',
-    password: ''
-  };
-  $scope.login = function (credentials) {
-    AuthService.login(credentials).then(function () {
-      $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-    }, function () {
-      $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-    });
-  };
-});
+angular.module('LoginCtrl', ['LoginService']).controller('LoginController', ['$window','$location', 'LoginService',
+
+    function ($window, $location, LoginService) {
+
+      $scope.message = '';
+        //$rootScope.isLoggedin = false;
+        
+      $scope.submit = function(formData) {
+        $scope.master = angular.copy(formData);
+
+        UserService.postData($scope.master)
+        .then (
+          function(res) {
+            $window.sessionStorage.token = res.data.token;
+            $location.path('/dashboard');
+          },
+          function (res) {
+            // Erase the token if the user fails to log in
+            delete $window.sessionStorage.token;
+            // Handle login errors here
+            $scope.message = 'Error: Invalid user or password';
+            alert('failed');
+          }
+        )
+        }
+
+
+
+    }
+]);
